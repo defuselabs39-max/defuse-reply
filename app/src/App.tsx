@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import {
   GUMROAD_PRODUCT_URL,
-  GumroadPurchaseEvent,
   onGumroadPurchase,
   verifyLicense,
   saveLicense,
   loadLicense,
 } from "@/lib/gumroad";
+import type { GumroadPurchaseEvent } from "@/lib/gumroad";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import {
