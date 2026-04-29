@@ -158,6 +158,9 @@ export default function App() {
   const [isLoading, setIsLoading] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [licenseInput, setLicenseInput] = useState("");
+  const [licenseError, setLicenseError] = useState("");
+  const [licenseLoading, setLicenseLoading] = useState(false);
 
   useEffect(() => {
     const stored = localStorage.getItem("defuse_uses_v5");
@@ -220,6 +223,22 @@ export default function App() {
     anchor.click();
     document.body.removeChild(anchor);
     // Post-payment unlock is handled by the gumroad:purchase listener in useEffect.
+  };
+
+  const handleVerifyLicense = async () => {
+    if (!licenseInput.trim()) return;
+    setLicenseLoading(true);
+    setLicenseError("");
+    const valid = await verifyLicense(licenseInput.trim());
+    if (valid) {
+      saveLicense(licenseInput.trim());
+      setIsUnlocked(true);
+      setShowPaywall(false);
+      setLicenseInput("");
+    } else {
+      setLicenseError("Invalid license key. Please check and try again.");
+    }
+    setLicenseLoading(false);
   };
 
   const handleCopy = () => {
@@ -655,6 +674,28 @@ export default function App() {
                 <p className="text-center text-[11px] text-white/20">
                   Losing this customer costs more than $9. Takes 8 seconds to send.
                 </p>
+                <div className="pt-2 border-t border-white/[0.06] space-y-2">
+                  <p className="text-center text-[11px] text-white/30">Already purchased?</p>
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value={licenseInput}
+                      onChange={(e) => setLicenseInput(e.target.value)}
+                      placeholder="Paste your license key"
+                      className="flex-1 bg-white/[0.05] border border-white/10 rounded-lg px-3 py-2 text-xs text-white placeholder-white/20 outline-none focus:border-white/20"
+                    />
+                    <button
+                      onClick={handleVerifyLicense}
+                      disabled={licenseLoading}
+                      className="bg-white/10 hover:bg-white/15 text-white text-xs px-3 py-2 rounded-lg transition-colors disabled:opacity-50"
+                    >
+                      {licenseLoading ? "..." : "Verify"}
+                    </button>
+                  </div>
+                  {licenseError && (
+                    <p className="text-[11px] text-red-400 text-center">{licenseError}</p>
+                  )}
+                </div>
                 <button
                   onClick={() => setShowPaywall(false)}
                   className="w-full text-xs text-white/20 hover:text-white/40 transition-colors py-2"
