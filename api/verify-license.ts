@@ -36,7 +36,7 @@ export default async function handler(req: any, res: any) {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: new URLSearchParams({
-        product_id: "cvlyvb",           // permalink from defuselabs.gumroad.com/l/cvlyvb
+        product_id: "pFNBDZ9dWk-JwsHHH6-obQ==",           // permalink from defuselabs.gumroad.com/l/cvlyvb
         license_key,
         access_token: GUMROAD_ACCESS_TOKEN,
         increment_uses_count: "false",  // prevents double-counting on re-verification
