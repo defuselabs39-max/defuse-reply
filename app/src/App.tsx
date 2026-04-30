@@ -394,7 +394,7 @@ export default function App() {
               className="bg-white text-black hover:bg-white/90 font-bold text-sm px-6 h-10"
               onClick={() => setShowPaywall(true)}
             >
-              Fix this before they chargeback — $9
+              Fix this before they chargeback — $15
             </Button>
           </div>
         )}
@@ -554,11 +554,11 @@ export default function App() {
                         className="bg-white text-black hover:bg-white/90 font-bold text-xs px-4 h-8"
                         onClick={() => setShowPaywall(true)}
                       >
-                        Fix this before they chargeback — $9
+                        Fix this before they chargeback — $15
                         <ChevronRight className="w-3.5 h-3.5 ml-0.5" />
                       </Button>
                       <p className="text-[10px] text-white/25">
-                        Losing this customer costs more than $9. Takes 8 seconds to send.
+                        Losing this customer costs more than $15. Takes 8 seconds to send.
                       </p>
                     </div>
                   </div>
@@ -668,11 +668,11 @@ export default function App() {
                   className="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white font-bold text-sm h-11 shadow-lg shadow-orange-500/20"
                   onClick={handleUnlock}
                 >
-                  Fix this before they chargeback — $9
+                  Fix this before they chargeback — $15
                   <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
                 <p className="text-center text-[11px] text-white/20">
-                  Losing this customer costs more than $9. Takes 8 seconds to send.
+                  Losing this customer costs more than $15. Takes 8 seconds to send.
                 </p>
                 <div className="pt-2 border-t border-white/[0.06] space-y-2">
                   <p className="text-center text-[11px] text-white/30">Already purchased?</p>
